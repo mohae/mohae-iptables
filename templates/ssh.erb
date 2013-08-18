@@ -1,0 +1,9 @@
+# INBOUND SSH roles
+# we limit simultaneous connections to 4
+-A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT  
+-A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT 
+-A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 4 -j REJECT
+
+# OUTBOUND SSH rules
+-A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
