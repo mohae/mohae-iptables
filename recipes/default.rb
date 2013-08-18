@@ -8,6 +8,8 @@
 #
 include_recipe 'iptables'
 recipe[iptables]
+
 iptables_rule "ssh"
 iptables_rule "loopback"
+iptables_rule "all_established"
 
