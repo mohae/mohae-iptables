@@ -6,9 +6,9 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
-recipe[iptables]
-
-iptables_rule "ssh"
-iptables_rule "loopback"
-iptables_rule "all_established"
-
+include_recipe "simple-iptables"
+include_recipe "mohae-iptables::drop"
+include_recipe "mohae-iptables::established"
+include_recipe "mohae-iptables::allow_ssh"
+include_recipe "mohae-iptables::loopback"
+include_recipe "mohae-iptables::log"
